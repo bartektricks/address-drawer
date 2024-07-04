@@ -1,7 +1,11 @@
 type ErrorMessageProps = {
-	children: string;
+	children: string | string[];
 };
 
 export default function ErrorMessage({ children }: ErrorMessageProps) {
-	return <span className="text-red-700 text-xs">{children}</span>;
+	return (
+		<span className="text-red-700 text-xs">
+			{typeof children === "string" ? children : children.join(", ")}
+		</span>
+	);
 }
