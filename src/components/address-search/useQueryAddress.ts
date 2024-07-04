@@ -20,7 +20,7 @@ export default function useQueryAddress(query: string) {
 		queryKey: [ADDRESS_KEY, debouncedQuery],
 		queryFn: async () => {
 			const data = await sess.suggest(debouncedQuery);
-			return data.suggestions.map(({ full_address }, index) => ({
+			return data?.suggestions.map(({ full_address }, index) => ({
 				id: full_address ?? index,
 				value: full_address ?? "",
 				displayValue: full_address ?? "",
