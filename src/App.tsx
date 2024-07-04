@@ -1,5 +1,7 @@
+import AddressModalForm from "./views/AddressModal";
+
 function App() {
-	return <div className="text-4xl text-purple-600 font-bold">Hello world</div>;
+	return <AddressModalForm />;
 }
 
 export default App;
