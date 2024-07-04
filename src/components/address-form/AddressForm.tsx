@@ -1,16 +1,49 @@
 import { Formik } from "formik";
 import Button from "../button/Button";
 import Input from "../form/Input";
+import MultiSelect from "../form/MultiSelect";
 import TextArea from "../form/TextArea";
 import { AddressFormSchema, type FieldKeys } from "./schema";
 
 const ADDRESS = "address" satisfies FieldKeys;
 const DESCRIPTION = "description" satisfies FieldKeys;
 
+const departments = [
+	{
+		id: 1,
+		displayValue: "Department 1",
+		value: "department-1",
+	},
+	{
+		id: 2,
+		displayValue: "Department 2",
+		value: "department-2",
+	},
+	{
+		id: 3,
+		displayValue: "Department 3",
+		value: "department-3",
+	},
+	{
+		id: 4,
+		displayValue: "Department 4",
+		value: "department-4",
+	},
+	{
+		id: 5,
+		displayValue: "Department 5",
+		value: "department-5",
+	},
+];
+
 export default function AddressForm() {
 	return (
 		<Formik
-			initialValues={AddressFormSchema.getDefault()}
+			initialValues={{
+				address: "",
+				departments: [] as string[],
+				description: "",
+			}}
 			validationSchema={AddressFormSchema}
 			onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
 		>
@@ -33,15 +66,24 @@ export default function AddressForm() {
 						value={values[ADDRESS]}
 						error={touched[ADDRESS] ? errors[ADDRESS] : undefined}
 					/>
+					<MultiSelect
+						title="Attach the address above to one or more departments"
+						value={values.departments}
+						name="departments"
+						onChange={handleChange}
+						fields={departments}
+						placeholder="Select department(s)"
+						error={touched.departments ? errors.departments : undefined}
+					/>
 					<TextArea
 						title="Address description (optional)"
 						placeholder="Write here..."
 						onChange={handleChange}
 						onBlur={handleBlur}
+						name="description"
 						error={touched[DESCRIPTION] ? errors[DESCRIPTION] : undefined}
-					>
-						{values[DESCRIPTION]}
-					</TextArea>
+						value={values[DESCRIPTION]}
+					/>
 					<Button className="self-end" type="submit">
 						Add address
 					</Button>
