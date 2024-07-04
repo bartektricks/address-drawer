@@ -1,12 +1,9 @@
 import { Formik } from "formik";
 import Button from "../button/Button";
-import Input from "../form/Input";
+import Combobox from "../form/Combobox";
 import MultiSelect from "../form/MultiSelect";
 import TextArea from "../form/TextArea";
-import { AddressFormSchema, type FieldKeys } from "./schema";
-
-const ADDRESS = "address" satisfies FieldKeys;
-const DESCRIPTION = "description" satisfies FieldKeys;
+import { AddressFormSchema } from "./schema";
 
 const departments = [
 	{
@@ -56,33 +53,53 @@ export default function AddressForm() {
 				touched,
 			}) => (
 				<form onSubmit={handleSubmit} className="flex flex-col gap-4">
-					<Input
+					<Combobox
 						title="Search for an address"
-						type="text"
-						name={ADDRESS}
 						placeholder="Type your address here..."
-						onChange={handleChange}
-						onBlur={handleBlur}
-						value={values[ADDRESS]}
-						error={touched[ADDRESS] ? errors[ADDRESS] : undefined}
+						name="address"
+						fields={[
+							{
+								id: 1,
+								value: "Durward Reynolds",
+								displayValue: "Durward Reynolds",
+							},
+							{ id: 2, value: "Kenton Towne", displayValue: "Kenton Towne" },
+							{
+								id: 3,
+								value: "Therese Wunsch",
+								displayValue: "Therese Wunsch",
+							},
+							{
+								id: 4,
+								value: "Benedict Kessler",
+								displayValue: "Benedict Kessler",
+							},
+							{ id: 5, value: "Katelyn Rohan", displayValue: "Katelyn Rohan" },
+						]}
+						value={values.address}
+						onSelect={handleChange}
+						error={touched.address ? errors.address : undefined}
+						onQueryChange={(e) => {
+							console.log(e);
+						}}
 					/>
 					<MultiSelect
 						title="Attach the address above to one or more departments"
-						value={values.departments}
+						placeholder="Select department(s)"
 						name="departments"
+						value={values.departments}
 						onChange={handleChange}
 						fields={departments}
-						placeholder="Select department(s)"
 						error={touched.departments ? errors.departments : undefined}
 					/>
 					<TextArea
 						title="Address description (optional)"
 						placeholder="Write here..."
+						name="description"
 						onChange={handleChange}
 						onBlur={handleBlur}
-						name="description"
-						error={touched[DESCRIPTION] ? errors[DESCRIPTION] : undefined}
-						value={values[DESCRIPTION]}
+						error={touched.description ? errors.description : undefined}
+						value={values.description}
 					/>
 					<Button className="self-end" type="submit">
 						Add address
