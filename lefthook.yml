@@ -1,6 +1,8 @@
 pre-commit:
   parallel: true
   commands:
+    ts:
+      run: pnpm tsc --noEmit
     check:
       run: pnpm biome check --write --staged --no-errors-on-unmatched
       stage_fixed: true

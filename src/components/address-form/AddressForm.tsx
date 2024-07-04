@@ -4,16 +4,18 @@ import Button from "../button/Button";
 import MultiSelect from "../form/MultiSelect";
 import TextArea from "../form/TextArea";
 import { departments } from "./helpers";
-import { AddressFormSchema, type FieldKeys } from "./schema";
+import { AddressFormSchema, type FieldKeys, type Fields } from "./schema";
+
+const initialValues: Fields = {
+	address: "",
+	departments: [],
+	description: "",
+};
 
 export default function AddressForm() {
 	return (
 		<Formik
-			initialValues={{
-				address: "",
-				departments: [] as string[],
-				description: "",
-			}}
+			initialValues={initialValues}
 			validationSchema={AddressFormSchema}
 			onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
 		>

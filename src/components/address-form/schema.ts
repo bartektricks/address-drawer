@@ -8,4 +8,5 @@ export const AddressFormSchema = Yup.object().shape({
 	description: Yup.string().optional(),
 });
 
-export type FieldKeys = keyof Yup.InferType<typeof AddressFormSchema>;
+export type Fields = Yup.InferType<typeof AddressFormSchema>;
+export type FieldKeys = keyof Fields;
