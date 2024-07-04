@@ -1,9 +1,9 @@
 import { Formik } from "formik";
+import getDepartments from "../../api/getDepartments";
 import AddressSearch from "../address-search/AddressSearch";
 import Button from "../button/Button";
 import MultiSelect from "../form/MultiSelect";
 import TextArea from "../form/TextArea";
-import { departments } from "./helpers";
 import { AddressFormSchema, type FieldKeys, type Fields } from "./schema";
 
 const initialValues: Fields = {
@@ -54,7 +54,7 @@ export default function AddressForm() {
 							title="Attach the address above to one or more departments"
 							placeholder="Select department(s)"
 							{...getSharedProps("departments")}
-							fields={departments}
+							fields={getDepartments()}
 						/>
 						<TextArea
 							title="Address description (optional)"
