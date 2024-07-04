@@ -9,13 +9,14 @@ import ErrorMessage from "./ErrorMessage";
 import Label from "./Label";
 import { getInputClass } from "./helpers";
 
-type ComboboxProps = {
+export type ComboboxProps = {
 	title: string;
 	error?: string;
 	value: string;
 	name: string;
 	placeholder: string;
-	fields: { id: number | string; value: string; displayValue: string }[];
+	isLoading?: boolean;
+	fields?: { id: number | string; value: string; displayValue: string }[];
 	onQueryChange: (e: string) => void;
 	onSelect: FormikHandlers["handleChange"];
 	iconStart?: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
@@ -28,6 +29,7 @@ export default function Combobox({
 	fields,
 	onSelect,
 	placeholder,
+	isLoading,
 	name,
 	onQueryChange,
 	iconStart: IconStart,
@@ -35,7 +37,6 @@ export default function Combobox({
 	return (
 		<Label title={title}>
 			<HeadlessCombobox
-				immediate
 				value={value}
 				name={name}
 				onChange={(e) => {
@@ -71,7 +72,8 @@ export default function Combobox({
 						"w-[var(--input-width)] bg-white px-0 py-0 cursor-pointer",
 					)}
 				>
-					{fields.map(({ id, value, displayValue }) => (
+					{isLoading && !fields && <div>Loading</div>}
+					{fields?.map(({ id, value, displayValue }) => (
 						<ComboboxOption
 							key={id}
 							value={value}
@@ -80,6 +82,7 @@ export default function Combobox({
 							{displayValue}
 						</ComboboxOption>
 					))}
+					{!isLoading && !fields && <div>No fields found</div>}
 				</ComboboxOptions>
 			</HeadlessCombobox>
 			{error && <ErrorMessage>{error}</ErrorMessage>}
