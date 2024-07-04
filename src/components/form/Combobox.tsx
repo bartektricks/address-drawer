@@ -18,6 +18,7 @@ type ComboboxProps = {
 	fields: { id: number | string; value: string; displayValue: string }[];
 	onQueryChange: (e: string) => void;
 	onSelect: FormikHandlers["handleChange"];
+	iconStart?: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
 };
 
 export default function Combobox({
@@ -29,10 +30,12 @@ export default function Combobox({
 	placeholder,
 	name,
 	onQueryChange,
+	iconStart: IconStart,
 }: ComboboxProps) {
 	return (
 		<Label title={title}>
 			<HeadlessCombobox
+				immediate
 				value={value}
 				name={name}
 				onChange={(e) => {
@@ -44,16 +47,24 @@ export default function Combobox({
 					});
 				}}
 			>
-				<ComboboxInput
-					className={getInputClass()}
-					placeholder={placeholder}
-					displayValue={(displayValue) =>
-						typeof displayValue === "string" ? displayValue : value
-					}
-					onChange={(event) => {
-						onQueryChange(event.target.value);
-					}}
-				/>
+				<div className="relative">
+					{IconStart && (
+						<IconStart
+							color="#d1d5db"
+							className="absolute top-1/2 -translate-y-1/2 left-1 max-w-4"
+						/>
+					)}
+					<ComboboxInput
+						className={getInputClass(!!IconStart && "pl-6")}
+						placeholder={placeholder}
+						displayValue={(displayValue) =>
+							typeof displayValue === "string" ? displayValue : value
+						}
+						onChange={(event) => {
+							onQueryChange(event.target.value);
+						}}
+					/>
+				</div>
 				<ComboboxOptions
 					anchor="bottom"
 					className={getInputClass(
