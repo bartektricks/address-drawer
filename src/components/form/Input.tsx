@@ -1,6 +1,6 @@
-import clsx from "clsx";
 import ErrorMessage from "./ErrorMessage";
 import Label, { type LabelProps } from "./Label";
+import { getInputClass } from "./helpers";
 
 type InputProps = JSX.IntrinsicElements["input"] & {
 	error?: string;
@@ -15,14 +15,10 @@ export default function Input({
 	error,
 	...props
 }: InputProps) {
-	const inputClass = clsx(
-		"border border-gray-300 rounded w-full py-2 text-sm",
-		{
-			"px-1": !IconStart && !IconEnd,
-			"pl-6 pr-1": IconStart,
-			"pr-6 pl-1": IconEnd,
-		},
-	);
+	const inputClass = getInputClass({
+		"pl-6 pr-1": IconStart,
+		"pr-6 pl-1": IconEnd,
+	});
 
 	return (
 		<Label title={title}>

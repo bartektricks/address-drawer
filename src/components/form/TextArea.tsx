@@ -1,5 +1,6 @@
 import ErrorMessage from "./ErrorMessage";
 import Label, { type LabelProps } from "./Label";
+import { getInputClass } from "./helpers";
 
 type TextAreaProps = JSX.IntrinsicElements["textarea"] &
 	LabelProps & {
@@ -12,7 +13,7 @@ export default function TextArea({ title, error, ...props }: TextAreaProps) {
 			<textarea
 				rows={3}
 				{...props}
-				className="border border-gray-300 rounded w-full text-sm py-2 px-1"
+				className={getInputClass()}
 				aria-errormessage={error}
 			/>
 			{error && <ErrorMessage>{error}</ErrorMessage>}
