@@ -1,4 +1,5 @@
 import { Formik } from "formik";
+import { LuMapPin } from "react-icons/lu";
 import Button from "../button/Button";
 import Combobox from "../form/Combobox";
 import MultiSelect from "../form/MultiSelect";
@@ -54,6 +55,7 @@ export default function AddressForm() {
 			}) => (
 				<form onSubmit={handleSubmit} className="flex flex-col gap-4">
 					<Combobox
+						iconStart={LuMapPin}
 						title="Search for an address"
 						placeholder="Type your address here..."
 						name="address"

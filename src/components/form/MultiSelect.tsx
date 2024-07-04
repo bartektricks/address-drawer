@@ -34,6 +34,8 @@ export default function MultiSelect({
 		.map((field) => field.displayValue)
 		.join(", ");
 
+	const isSelectedValueVisible = selectedDisplayValues.length > 0;
+
 	return (
 		<Label title={title}>
 			<Listbox
@@ -51,9 +53,7 @@ export default function MultiSelect({
 				{({ open }) => (
 					<>
 						<ListboxButton className={getInputClass("text-start relative")}>
-							{selectedDisplayValues.length
-								? selectedDisplayValues
-								: placeholder}
+							{isSelectedValueVisible ? selectedDisplayValues : placeholder}
 							<IoChevronDownSharp
 								aria-hidden="true"
 								className={cn(
