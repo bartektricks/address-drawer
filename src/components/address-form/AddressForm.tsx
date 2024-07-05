@@ -1,4 +1,5 @@
 import getDepartments from "@/api/getDepartments";
+import setAddressList from "@/api/setAddressList";
 import AddressSearch from "@/components/address-search/AddressSearch";
 import Button from "@/components/button/Button";
 import MultiSelect from "@/components/form/MultiSelect";
@@ -18,7 +19,16 @@ export default function AddressForm() {
 		<Formik
 			initialValues={initialValues}
 			validationSchema={AddressFormSchema}
-			onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
+			enableReinitialize
+			onSubmit={(values) => {
+				setAddressList({
+					...values,
+					id: Date.now().toString(),
+				});
+
+				// This could be a query update with React Query
+				window.location.reload();
+			}}
 		>
 			{({ handleSubmit, ...props }) => {
 				return (
