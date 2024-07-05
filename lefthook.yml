@@ -6,3 +6,5 @@ pre-commit:
     check:
       run: pnpm biome check --write --staged --no-errors-on-unmatched
       stage_fixed: true
+    test:
+      run: pnpm vitest run
