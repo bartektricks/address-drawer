@@ -10,29 +10,31 @@ import Label from "./Label";
 import { getInputClass } from "./helpers";
 
 export type ComboboxProps = {
-	title: string;
 	error?: string;
-	value: string;
-	name: string;
-	placeholder: string;
-	isLoading?: boolean;
 	fields?: { id: number | string; value: string; displayValue: string }[];
+	iconStart?: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+	isLoading?: boolean;
+	name: string;
+	onBlur: FormikHandlers["handleBlur"];
 	onQueryChange: (e: string) => void;
 	onSelect: FormikHandlers["handleChange"];
-	iconStart?: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+	placeholder: string;
+	title: string;
+	value: string;
 };
 
 export default function Combobox({
-	title,
 	error,
-	value,
 	fields,
-	onSelect,
-	placeholder,
+	iconStart: IconStart,
 	isLoading,
 	name,
+	onBlur,
 	onQueryChange,
-	iconStart: IconStart,
+	onSelect,
+	placeholder,
+	title,
+	value,
 }: ComboboxProps) {
 	return (
 		<Label title={title}>
@@ -57,6 +59,14 @@ export default function Combobox({
 					)}
 					<ComboboxInput
 						className={getInputClass(!!IconStart && "pl-6")}
+						onBlur={() => {
+							onBlur({
+								target: {
+									value,
+									name,
+								},
+							});
+						}}
 						placeholder={placeholder}
 						displayValue={(displayValue) =>
 							typeof displayValue === "string" ? displayValue : value

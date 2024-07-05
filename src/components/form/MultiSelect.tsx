@@ -12,22 +12,24 @@ import Label, { type LabelProps } from "./Label";
 import { getInputClass } from "./helpers";
 
 type MultiSelectProps = {
-	value: string[];
-	name: string;
-	placeholder: string;
-	fields: { id: number; displayValue: string; value: string }[];
-	onChange: FormikHandlers["handleChange"];
 	error?: string | string[];
+	fields: { id: number; displayValue: string; value: string }[];
+	name: string;
+	onBlur: FormikHandlers["handleBlur"];
+	onChange: FormikHandlers["handleChange"];
+	placeholder: string;
+	value: string[];
 } & LabelProps;
 
 export default function MultiSelect({
+	error,
+	fields,
+	name,
+	onBlur,
+	onChange,
+	placeholder,
 	title,
 	value,
-	fields,
-	placeholder,
-	name,
-	onChange,
-	error,
 }: MultiSelectProps) {
 	const selectedDisplayValues = fields
 		.filter((field) => value.includes(field.value))
@@ -52,7 +54,17 @@ export default function MultiSelect({
 			>
 				{({ open }) => (
 					<>
-						<ListboxButton className={getInputClass("text-start relative")}>
+						<ListboxButton
+							className={getInputClass("text-start relative")}
+							onBlur={() => {
+								onBlur({
+									target: {
+										value,
+										name,
+									},
+								});
+							}}
+						>
 							{isSelectedValueVisible ? selectedDisplayValues : placeholder}
 							<IoChevronDownSharp
 								aria-hidden="true"
