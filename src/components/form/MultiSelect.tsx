@@ -6,6 +6,7 @@ import {
 	ListboxOptions,
 } from "@headlessui/react";
 import type { FormikHandlers } from "formik";
+import { IoIosCheckmark } from "react-icons/io";
 import { IoChevronDownSharp } from "react-icons/io5";
 import ErrorMessage from "./ErrorMessage";
 import Label, { type LabelProps } from "./Label";
@@ -87,9 +88,10 @@ export default function MultiSelect({
 								<ListboxOption
 									key={id}
 									value={value}
-									className="data-[focus]:bg-gray-200 px-1 py-2"
+									className="data-[focus]:bg-gray-200 px-1 py-2 flex items-center justify-start group gap-1"
 								>
 									{displayValue}
+									<IoIosCheckmark className="invisible size-6 group-data-[selected]:visible" />
 								</ListboxOption>
 							))}
 						</ListboxOptions>
