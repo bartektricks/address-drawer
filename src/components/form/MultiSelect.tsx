@@ -55,7 +55,7 @@ export default function MultiSelect({
 				{({ open }) => (
 					<>
 						<ListboxButton
-							className={getInputClass("text-start relative")}
+							className={getInputClass("text-start relative flex pr-6")}
 							onBlur={() => {
 								onBlur({
 									target: {
@@ -65,7 +65,9 @@ export default function MultiSelect({
 								});
 							}}
 						>
-							{isSelectedValueVisible ? selectedDisplayValues : placeholder}
+							<span className="overflow-x-auto text-nowrap no-scrollbar">
+								{isSelectedValueVisible ? selectedDisplayValues : placeholder}
+							</span>
 							<IoChevronDownSharp
 								aria-hidden="true"
 								className={cn(
