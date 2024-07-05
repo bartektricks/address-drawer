@@ -5,7 +5,7 @@ type Suggestion = NonNullable<
 >["suggestions"][number];
 
 export default function suggestionsDto(
-	{ full_address }: Suggestion,
+	{ full_address }: Pick<Suggestion, "full_address">,
 	index: number,
 ) {
 	return {
