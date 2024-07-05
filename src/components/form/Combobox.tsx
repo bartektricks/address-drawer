@@ -59,6 +59,7 @@ export default function Combobox({
 					)}
 					<ComboboxInput
 						className={getInputClass(!!IconStart && "pl-6")}
+						autoComplete="off"
 						onBlur={() => {
 							onBlur({
 								target: {
