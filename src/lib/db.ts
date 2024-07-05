@@ -12,9 +12,9 @@ type DbData = {
 };
 
 const db = {
-	get(): DbData | null {
+	get(): DbData | undefined {
 		const db = localStorage.getItem(DB_KEY);
-		return db ? JSON.parse(db) : null;
+		return db ? JSON.parse(db) : undefined;
 	},
 	set(address: Address) {
 		const db = this.get();
