@@ -12,6 +12,7 @@ export default function AddressCards() {
 			{addresses.map(({ id, address, departments, description }) => (
 				<Card
 					key={id}
+					id={id}
 					title={address}
 					subtitle={`Nr. of departments who use this address: ${departments.length}`}
 					body={`Directions: ${description.length > 0 ? description : "N/A"}`}

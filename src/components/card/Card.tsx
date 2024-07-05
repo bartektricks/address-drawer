@@ -1,16 +1,24 @@
 import { FaTrash } from "react-icons/fa";
 
 type CardProps = {
+	id: string;
 	title: string;
 	subtitle: string;
 	body: string;
 	onClose: () => void;
 };
 
-export default function Card({ title, subtitle, body, onClose }: CardProps) {
+export default function Card({
+	id,
+	title,
+	subtitle,
+	body,
+	onClose,
+}: CardProps) {
 	return (
 		<div className="relative rounded border border-gray-300 p-2 pr-7 text-gray-600 text-sm">
 			<button
+				data-testid={`close-button-${id}`}
 				className="absolute top-0 right-0 p-3"
 				aria-label="Close"
 				type="button"
