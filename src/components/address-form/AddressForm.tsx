@@ -1,9 +1,9 @@
+import getDepartments from "@/api/getDepartments";
+import AddressSearch from "@/components/address-search/AddressSearch";
+import Button from "@/components/button/Button";
+import MultiSelect from "@/components/form/MultiSelect";
+import TextArea from "@/components/form/TextArea";
 import { Formik } from "formik";
-import getDepartments from "../../api/getDepartments";
-import AddressSearch from "../address-search/AddressSearch";
-import Button from "../button/Button";
-import MultiSelect from "../form/MultiSelect";
-import TextArea from "../form/TextArea";
 import { AddressFormSchema, type FieldKeys, type Fields } from "./schema";
 
 const initialValues: Fields = {

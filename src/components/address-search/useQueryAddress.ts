@@ -1,6 +1,6 @@
+import useGetSearchSession from "@/hooks/useGetSearchSession";
 import { useDebounce } from "@uidotdev/usehooks";
 import { useQuery } from "react-query";
-import useGetSearchSession from "../../hooks/useGetSearchSession";
 import suggestionsDto from "./suggestionsDto";
 
 export const ADDRESS_KEY = "address";

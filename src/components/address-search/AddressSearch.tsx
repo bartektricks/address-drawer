@@ -1,6 +1,6 @@
+import Combobox, { type ComboboxProps } from "@/components/form/Combobox";
 import { useState } from "react";
 import { LuMapPin } from "react-icons/lu";
-import Combobox, { type ComboboxProps } from "../form/Combobox";
 import useQueryAddress from "./useQueryAddress";
 
 type AddressSearchProps = Omit<

@@ -1,4 +1,4 @@
-import type useGetSearchSession from "../../hooks/useGetSearchSession";
+import type useGetSearchSession from "@/hooks/useGetSearchSession";
 
 type Suggestion = NonNullable<
 	ReturnType<typeof useGetSearchSession>["suggestions"]
