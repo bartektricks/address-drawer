@@ -5,7 +5,7 @@ import { IoIosClose } from "react-icons/io";
 
 export default function AddressModal() {
 	return (
-		<div className="p-6">
+		<div className="p-6 max-w-2xl mx-auto">
 			<header className="mb-8 relative">
 				<h1 className="font-bold text-lg mb-1">Addresses</h1>
 				<p className="text-gray-600 text-sm">
