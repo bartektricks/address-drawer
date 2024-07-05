@@ -10,7 +10,7 @@ type AddressSearchProps = Omit<
 
 export default function AddressSearch(props: AddressSearchProps) {
 	const [query, setQuery] = useState("");
-	const { data, isFetching } = useQueryAddress(query);
+	const { data, isFetching, isError } = useQueryAddress(query);
 
 	return (
 		<Combobox
@@ -19,6 +19,7 @@ export default function AddressSearch(props: AddressSearchProps) {
 			fields={data}
 			onQueryChange={setQuery}
 			isLoading={isFetching}
+			fallbackMessage={isError ? "An error occurred." : undefined}
 		/>
 	);
 }

@@ -11,6 +11,7 @@ import { getInputClass } from "./helpers";
 
 export type ComboboxProps = {
 	error?: string;
+	fallbackMessage?: string;
 	fields?: { id: number | string; value: string; displayValue: string }[];
 	iconStart?: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
 	isLoading?: boolean;
@@ -25,6 +26,7 @@ export type ComboboxProps = {
 
 export default function Combobox({
 	error,
+	fallbackMessage = "No fields found.",
 	fields,
 	iconStart: IconStart,
 	isLoading,
@@ -83,7 +85,11 @@ export default function Combobox({
 						"w-[var(--input-width)] bg-white px-0 py-0 cursor-pointer",
 					)}
 				>
-					{isLoading && !fields && <div>Loading</div>}
+					{!fields?.length && (
+						<div className="px-1 py-2">
+							{isLoading ? "Loading fields..." : fallbackMessage}
+						</div>
+					)}
 					{fields?.map(({ id, value, displayValue }) => (
 						<ComboboxOption
 							key={id}
@@ -93,7 +99,6 @@ export default function Combobox({
 							{displayValue}
 						</ComboboxOption>
 					))}
-					{!isLoading && !fields && <div>No fields found</div>}
 				</ComboboxOptions>
 			</HeadlessCombobox>
 			{error && <ErrorMessage>{error}</ErrorMessage>}
