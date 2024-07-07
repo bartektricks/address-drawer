@@ -62,6 +62,8 @@ export default function Combobox({
 					<ComboboxInput
 						className={getInputClass(!!IconStart && "pl-6")}
 						autoComplete="off"
+						aria-invalid={!!error}
+						aria-errormessage={error}
 						data-testid="combobox"
 						onBlur={() => {
 							onBlur({

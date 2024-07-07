@@ -13,7 +13,7 @@ import Label, { type LabelProps } from "./Label";
 import { getInputClass } from "./helpers";
 
 type MultiSelectProps = {
-	error?: string | string[];
+	error?: string;
 	fields: { id: number; displayValue: string; value: string }[];
 	name: string;
 	onBlur: FormikHandlers["handleBlur"];
@@ -57,6 +57,8 @@ export default function MultiSelect({
 					<>
 						<ListboxButton
 							className={getInputClass("text-start relative flex pr-6")}
+							aria-errormessage={error}
+							aria-invalid={!!error}
 							onBlur={() => {
 								onBlur({
 									target: {
