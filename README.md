@@ -65,7 +65,7 @@ pnpm build
 ### TODO
 
 - [ ] Add more tests.
-- [ ] Setup CI/CD.
+- [ ] Setup CI/CD with tests.
 - [ ] Setup Storybook.
 
 ### Notes
@@ -73,3 +73,7 @@ pnpm build
 #### Mapbox
 
 Technically I could use the Mapbox Search API directly, but I decided to use the wrapper for the sake of simplicity. The wrapper is a bit more high-level and provides a better developer experience because of the included typings (which are not perfect although it's understandable since it's a beta release).
+
+#### Formik + HeadlessUI
+
+Eventhough the HeadlessUI are really customizable, they don't work with Formik without a bit of extra custiomization. It's caused by the fact that Formik uses native input event handlers and HeadlessUI tries to simplify the event handling by just returning the value (at least for the Combobox and MultiSelect).
