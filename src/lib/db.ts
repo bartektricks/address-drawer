@@ -11,6 +11,9 @@ type DbData = {
 	addresses: Address[];
 };
 
+/**
+ * Mock db with ORM (kind of like Prisma Client etc.).
+ */
 const db = {
 	get(): DbData | undefined {
 		const db = localStorage.getItem(DB_KEY);

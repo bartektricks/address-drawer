@@ -1,5 +1,8 @@
 import plugin from "tailwindcss/plugin";
 
+/**
+ * A TailwindCSS utility function that adds CSS classes to hide scrollbars in different browsers.
+ */
 export default function hideScrollbarPlugin() {
 	return plugin(({ addUtilities }) => {
 		addUtilities({
