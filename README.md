@@ -6,7 +6,7 @@ To configure the project, copy the `.env.example` file to `.env` and fill in the
 
 ### VITE_MAPBOX_API_KEY
 
-The API key for Mapbox. You can get it [here](https://account.mapbox.com/).
+The API key for Mapbox. You can get it by creating an account [here](https://account.mapbox.com/). After the account creation you should have a default token provided by Mapbox. If not then simply create your own through their dashboard.
 
 ## Usage
 
